@@ -45,7 +45,7 @@ export const getTokensForBlockchain = (blockchain) => createSelector(
   },
 )
 
-export const makeGetLastBlockForBlockchain = (symbol) => {
+export const makeGetLastBlockBySymbol = (symbol) => {
   return createSelector(
     [
       getTokens,
@@ -56,7 +56,20 @@ export const makeGetLastBlockForBlockchain = (symbol) => {
       if (!symbol) {
         return null
       }
-      return tokens.latestBlocks()[tokens.item(symbol).blockchain()]
+      return tokens.latestBlocks()[tokens.item(symbol).blockchain()] || null
+    },
+  )
+}
+
+export const makeGetLastBlockByBlockchain = (blockchain: string) => {
+  return createSelector(
+    [
+      getTokens,
+    ],
+    (
+      tokens,
+    ) => {
+      return tokens.latestBlocks()[blockchain] || null
     },
   )
 }

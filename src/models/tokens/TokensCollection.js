@@ -14,11 +14,18 @@ export default class TokensCollection extends abstractFetchingCollection({
     return this._getSet('latestBlocks', value)
   }
 
-  latestBlocksForSymbol (symbol) {
+  latestBlocksByBlockchain (blockchain: string) {
     if (!symbol) {
       return null
     }
-    return this.latestBlocks()[ this.item(symbol).blockchain() ]
+    return this.latestBlocks()[ blockchain ] || null
+  }
+
+  latestBlocksBySymbol (symbol) {
+    if (!symbol) {
+      return null
+    }
+    return this.latestBlocks()[ this.item(symbol).blockchain() ] || null
   }
 
   getBySymbol (symbol: string) {

@@ -10,13 +10,13 @@ import { connect } from 'react-redux'
 import TxModel from 'models/TxModel'
 import { TX_CONFIRMATIONS } from 'assets'
 import { DUCK_SESSION } from 'redux/session/actions'
-import { makeGetLastBlockForBlockchain } from 'redux/tokens/selectors'
+import { makeGetLastBlockBySymbol } from 'redux/tokens/selectors'
 import { prefix } from './lang'
 import './TxConfirmations.scss'
 
 function mapStateToProps (state, ownProps) {
   return {
-    latestBlock: makeGetLastBlockForBlockchain(ownProps.transaction.symbol())(state),
+    latestBlock: makeGetLastBlockBySymbol(ownProps.transaction.symbol())(state),
     account: state.get(DUCK_SESSION).account,
   }
 }
