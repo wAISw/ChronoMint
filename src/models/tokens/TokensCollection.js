@@ -15,9 +15,6 @@ export default class TokensCollection extends abstractFetchingCollection({
   }
 
   latestBlocksByBlockchain (blockchain: string) {
-    if (!symbol) {
-      return null
-    }
     return this.latestBlocks()[ blockchain ] || null
   }
 
